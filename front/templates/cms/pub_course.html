@@ -1,0 +1,63 @@
+{% extends 'cms/base.html' %}
+
+{% block title %}
+    Release Courses
+{% endblock %}
+
+{% block head %}
+    <script src="{% static 'ueditor/ueditor.config.js' %}"></script>
+    <script src="{% static 'ueditor/ueditor.all.min.js' %}"></script>
+    <script src="{% static 'js/pub_course.min.js' %}"></script>
+{% endblock %}
+
+{% block content-header %}
+    <h1>Publish Course</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="form-group">
+                        <label for="title-input">Title: </label>
+                        <input type="text" class="form-control" placeholder="Course Title" name="title"
+                               id="title-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-input">Category: </label>
+                        <select name="category" class="form-control" id="category-input">
+                            {% for category in categories %}
+                                {% if news and news.category_id == category.pk %}
+                                    <option value="{{ category.pk }}" selected>{{ category.name }}</option>
+                                {% else %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="video-input">Video address: </label>
+                        <input type="text" class="form-control" name="video_url" id="video-input" placeholder="视频地址">
+                    </div>
+                    <div class="form-group">
+                        <label for="cover-input">Cover page: </label>
+                        <input type="text" class="form-control" name="cover" id="cover-input" placeholder="封面图">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration-input">Duration: </label>
+                        <input type="text" class="form-control" name="duration" id="duration-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Introduction: </label>
+                        <script id="editor" type="text/plain"></script>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary pull-right" id="submit-btn">Publish Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

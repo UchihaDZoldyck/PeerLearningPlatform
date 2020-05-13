@@ -1,0 +1,90 @@
+{% extends "base/front_base.html" %}
+
+{% block title %}
+    Course Detail - PLP
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/course/course_detail.min.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="news">
+        <div class="course-nav">
+            <div class="nav-container">
+                <h3 class="title">Online Course</h3>
+                <ul class="nav-list">
+                    <li class="active"><a href="#">Cyber Security</a></li>
+                    <li><a href="#">Operation System</a></li>
+                    <li><a href="#">Algorithm</a></li>
+                    <li><a href="#">Web Application</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="course-wrapper">
+                <div class="course-info">
+                    <p class="course-title">{{ course.title }}</p>
+                    <div class="price-group">
+                        <div class="share-group">
+                            <span class="title">Share to: </span>
+                        </div>
+                        <div class="buy-group">
+                            <!--<span class="price pay">$0.01</span>
+                            <a href="#" class="buy-btn">Buy now</a>-->
+                            <span class="free">Free</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-group">
+                    <iframe width="100%" height="100%" src="{{ course.video_url }}">
+</iframe>
+                </div>
+            </div>
+
+            <div class="bottom-wrapper">
+                <div class="course-detail-wrapper">
+                    <div class="item-group">
+                        <p class="item-title">Publisher</p>
+                        <div class="teacher-group">
+                            <div class="avatar-group">
+                                <img src="https://lh3.googleusercontent.com/-Ae-C9F8SzhA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclGBP1SC3E03u9ja2hTCBWpG3Xnhw.CMID/s192-c/photo.jpg" alt="">
+                            </div>
+                            <div class="teacher-info">
+                                <p class="teacher-name">{{ course.author.username }}</p>
+                            </div>
+                        </div>
+                        <p class="item-content">
+                            Publisher's profile to be added to the database.
+                        </p>
+                    </div>
+                    <div class="item-group">
+                        <p class="item-title">Course Introduction</p>
+
+                        <p class="item-content">
+                            {{ course.profile|safe }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="recommend-wrapper">
+                    <p class="recommand-title">Recommand Course</p>
+                    <ul class="course-list">
+                        <li>
+                            <a href="#">
+                                <div class="course-info-group">
+                                    <p class="course-title">Learn Python with Jonny</p>
+                                    <p class="teacher">Jonny Who</p>
+                                </div>
+                                <div class="thumbnail-group">
+                                    <img src="https://www.hermesinfotech.com/wp-content/uploads/2019/08/banner_5c6a6ea24ea1e.png" alt="">
+                                </div>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

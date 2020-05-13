@@ -1,0 +1,82 @@
+{% extends "base/front_base.html" %}
+{% load news_filters %}
+{% block title %}
+    Entry Details - PLP
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/news/news_detail.min.css' %}">
+    <script src="{% static 'arttemplet/template-web.js' %}"></script>
+    <script src="{% static 'js/news_detail.min.js' %}"></script>
+    <script id="comment-item" type="text/html">
+        {% verbatim %}
+        <li>
+            <div class="comment-info">
+                <img src="https://lh3.googleusercontent.com/-Ae-C9F8SzhA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclGBP1SC3E03u9ja2hTCBWpG3Xnhw.CMID/s192-c/photo.jpg"
+                     alt="" class="avatar">
+                <span class="author">{{ comment.author.username }}</span>
+                <span class="pub-time">{{ comment.pub_time|timeSince }}</span>
+            </div>
+            <p class="comment-content">{{ comment.content }}</p>
+        </li>
+        {% endverbatim %}
+    </script>
+{% endblock %}
+
+{% block main %}
+
+    <div class="news">
+        <div class="wrapper">
+            <div class="subject-wrapper-left">
+                <div class="subject-detail-wrapper">
+                    <h1 class="title">{{ news.title }}</h1>
+                    <div class="news-info">
+                        <div class="info-group">
+                            <span class="author">{{ news.author.username }}</span>
+                            <span class="pub-time">{{ news.pub_time|time_since }}</span>
+                            <span class="category">{{ news.category.name }}</span>
+{#                            <span class="like-btn"><a href="{% url 'news:click_like' %}" data-news-id="{{ news.pk }}>Like!({{ news.like_nums }})</a></span>#}
+                            <span class="edit-btn"><a href="{% url 'cms:edit_news' %}?news_id={{ news.pk }}">EDIT</a></span>
+                        </div>
+                        <div class="share-group">
+                            <span>Share to: </span>
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-twitter"></a>
+                        </div>
+                    </div>
+                    <article class="article">
+                        {{ news.content|safe }}
+
+                    </article>
+                </div>
+                <div class="comment-wrapper">
+                    <h3 class="title">
+                        Comments ({{ news.nums_comment }})
+                    </h3>
+                    <textarea name="comment" class="comment-textarea nologin-textarea"
+                              placeholder="Login before comment"></textarea>
+                    <div class="submit-btn-group">
+                        <button class="submit-comment-btn" data-news-id="{{ news.pk }}">
+                            Comment
+                        </button>
+                    </div>
+                    <ul class="comment-list">
+                        {% for comment in news.comments.all %}
+                            <li>
+                                <div class="comment-info">
+                                    <img src="https://lh3.googleusercontent.com/-Ae-C9F8SzhA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclGBP1SC3E03u9ja2hTCBWpG3Xnhw.CMID/s192-c/photo.jpg"
+                                         alt="" class="avatar">
+                                    <span class="author">{{ comment.author.username }}</span>
+                                    <span class="pub-time">{{ comment.pub_time|time_since }}</span>
+                                </div>
+                                <p class="comment-content">{{ comment.content }}</p>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+            {% include 'common/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

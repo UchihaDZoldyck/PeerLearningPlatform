@@ -1,0 +1,127 @@
+{% extends "base/front_base.html" %}
+{% load news_filters %}
+
+{% block title %}
+    Peer Learning Platform
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
+    <script src="{% static 'js/index.min.js' %}"></script>
+    <script src="{% static 'arttemplet/template-web.js' %}"></script>
+
+    <script id="news-item" type="text/html">
+        {% verbatim %}
+        {{ each newses news index }}
+        <li>
+            <div class="news-thumbnail-group">
+                <a href="/news/{{ news.id }}/"><img src="{{ news.thumbnail }}" alt=""></a>
+            </div>
+            <div class="news-contents-group">
+                <p class="title"><a href="/news/{{ news.id }}/">{{ news.title }}</a></p>
+                <p class="description">{{ news.desc }}</p>
+                <p class="more-info">
+                    <span class="category">{{ news.category.name }}</span>
+                    <span class="create-time">{{ news.pub_time|timeSince }}</span>
+                    <span class="author">{{ news.author.username }}</span>
+                </p>
+            </div>
+        </li>
+        {{ /each }}
+        {% endverbatim %}
+    </script>
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="news">
+        <div class="wrapper">
+            <div class="subject-wrapper-left">
+                <div class="list-outer-group">
+                    <ul class="list-tab">
+                        <li class="active" data-category="0"><a href="javaScript:void(0);">Do you know..</a></li>
+
+                        {% for category in categories %}
+                            <li data-category="{{ category.pk }}"><a href="javaScript:void(0);">{{ category.name }}</a></li>
+                        {% endfor %}
+
+                    </ul>
+                    <ul class="list-inner-group">
+                        {% for news in newses %}
+                            <li>
+                                <div class="news-thumbnail-group">
+                                    <a href="{% url 'news:news_detail' news_id=news.pk %}"><img
+                                            src="{{ news.thumbnail }}"
+                                            alt=""></a>
+                                </div>
+                                <div class="news-contents-group">
+                                    <p class="title"><a href="{% url 'news:news_detail' news_id=news.pk %}">{{ news.title }}</a></p>
+                                    <p class="description">{{ news.desc }}</p>
+                                    <p class="more-info">
+                                        <span class="category">{{ news.category.name }}</span>
+                                        <span class="create-time">{{ news.pub_time|time_since }}</span>
+                                        <span class="author">{{ news.author.username }}</span>
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+
+                    </ul>
+                    <div class="load-more-group">
+                        <button class="load-more" id="load-more-btn">
+                            See More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% include 'common/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+{#    <div class="publisizing">#}
+{#        <div class="layout">#}
+{#            <div class="slides">#}
+{#                <div class="viewport" id="viewport"><!--轮播图-->#}
+{#                    <ul class="banner-ul" id="banner-ul">#}
+{#                        <li>#}
+{#                            <div class="banner-cards">1</div>#}
+{#                            <div class="banner-cards">2</div>#}
+{#                            <div class="banner-cards">3</div>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <div class="banner-cards">4</div>#}
+{#                            <div class="banner-cards">5</div>#}
+{#                            <div class="banner-cards">6</div>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <div class="banner-cards">7</div>#}
+{#                            <div class="banner-cards">8</div>#}
+{#                            <div class="banner-cards">9</div>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                    <span class="arrow left-arrow">‹</span>#}
+{#                    <span class="arrow right-arrow">›</span>#}
+{#                </div>#}
+{##}
+{#                <div class="banner-control-group">#}
+{#                    <ul class="banner-control">#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="statistics">#}
+{#                <div class="statistics-wrapper logout">#}
+{#                    <p class="name">PEER LEARNING</p>#}
+{#                    <p class="intro">A platform that learn with your peers.</p>#}
+{#                    <div class="articles-number">946,417 articles</div>#}
+{#                    <div class="authors-number">4,681 authors</div>#}
+{#                    <div class="editing-times">8,142,649 editing times</div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}

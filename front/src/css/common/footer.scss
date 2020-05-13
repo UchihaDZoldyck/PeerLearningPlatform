@@ -1,0 +1,77 @@
+@import "init";
+@import "constants.scss";
+
+footer{
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $navBackground;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+
+    .footer-box{
+        width: $pageWidth;
+        margin: 0 auto;
+        text-align: center;
+        .social-medias{
+            margin: 0 auto;
+            width: 160px;
+            overflow: hidden;
+
+            li{
+
+                float: left;
+                padding-left: 5px;
+                padding-right: 5px;
+                margin-bottom: 20px;
+            }
+            .fa{
+                font-size: 14px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50%;
+            }
+            .fa-facebook {
+              background: #3B5998;
+              color: white;
+            }
+            .fa-twitter {
+              background: #55ACEE;
+              color: white;
+            }
+            .fa-youtube {
+              background: #bb0000;
+              color: white;
+            }
+            .fa-instagram {
+              background: #125688;
+              color: white;
+            }
+        }
+
+        .info-pages{
+            overflow: hidden;
+            text-align: center;
+            display: inline-block;
+            li{
+                float: left;
+                margin-right: 20px;
+                display: inline;
+
+                a{
+                    color: white;
+                }
+            }
+        }
+        .company{
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+    }
+}

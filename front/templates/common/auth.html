@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="../../dist/css/common/auth.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1631688_08ke1tlh2gdt.css">
+    <script src="../../dist/js/jquery-3.3.1.min.js"></script>
+    <script src="../../dist/js/auth.min.js"></script>
+</head>
+<body>
+
+
+    <button id="btn">Login/Register</button>
+    <div class="mask-wrapper">
+        <div class="auth-wrapper">
+            <div class="close-wrapper">
+                <span class="close-btn icon-close iconfont"> </span>
+            </div>
+            <div class="auth-inner-wrapper">
+                <div class="scroll-wrapper">
+                    <div class="signin-group auth-group">
+                        <div class="top-group">
+                            <span class="title">Please Login</span>
+                            <a href="javascript: void(0);" class="switch">Register now</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="telephone" placeholder="Please input your phone number">
+                            </div>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password" placeholder="Please input your password ">
+
+                            </div>
+                            <div class="input-group">
+                                <label for="" class="remember-label">
+                                    <input type="checkbox" name="remember" value="1">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="submit-btn" value="Login">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="signup-group auth-group">
+                        <div class="top-group">
+                            <span class="title">Please Register</span>
+                            <a href="javascript: void(0);" class="switch">Login now</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="telephone" placeholder="Please input your telephone number">
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="username" placeholder="Please input your username">
+                            </div>
+
+                            <div class="input-group">
+                                <div class="short-input-group">
+                                    <input type="text" class="form-control" name="img_captcha" placeholder="graph validate code">
+
+                                </div>
+                                <div class="input-group-addon">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="password1" placeholder="Please input your password">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="password2" placeholder="Please input your password again">
+                            </div>
+                            <div class="input-group">
+                                <div class="short-input-group">
+                                    <input type="text" class="form-control" name="sms_captcha" placeholder="SMS validate code">
+                                </div>
+                                <div class="input-group-addon">
+                                    <span class="sms-captcha-btn">Send code</span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="button" class="submit-btn" value="Register">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

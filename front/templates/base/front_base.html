@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1631688_sdnkdob8mmk.css">
+    <link rel="stylesheet" href="{% static 'css/common/auth.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/message.min.js' %}"></script>
+    <script src="{% static 'js/plpajax.min.js' %}"></script>
+    <script src="{% static 'js/front_base.min.js' %}"></script>
+    <script src="{% static 'js/news_detail.min.js' %}"></script>
+
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<header class="header">
+    <div class="container">
+        <div class="logo-box">
+            <a href="/"></a>
+        </div>
+
+        <ul class="nav">
+            <li class="active"><a href="/">Entries</a></li>
+            <li><a href="{% url 'course:course_index' %}">Video Zone</a></li>
+            <li><a id="Create_entry_btn" href="{% url 'cms:write_news' %}">Create Entry</a></li>
+            <li><a href="/news/search/">Search</a></li>
+        </ul>
+
+        <div class="auth-box">
+            <i class="icon-wodedianji iconfont"></i>
+            {% if user.is_authenticated %}
+                <a href="#" class="authenticated-box">{{ user.username }}</a>
+                <div class="user-more-box">
+                    <i class="triangle"></i>
+                    {% if user.is_staff %}
+                        <a href="{% url 'cms:index' %}">Management System</a>
+                        {% else %}
+                        <a href="{% url 'cms:write_news' %}">Release New Entry!</a>
+                    {% endif %}
+                    <a href="{% url 'plpauth:logout' %}">Logout</a>
+                </div>
+            {% else %}
+                <a href="#" class="signin-btn">Login</a> /
+                <a href="#" class="signup-btn">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+{% block main %}
+{% endblock %}
+
+
+
+
+<footer class="footer">
+    <div class="footer-box">
+        <ul class="social-medias">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-youtube"></a></li>
+            <li><a href="#" class="fa fa-instagram"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+        </ul>
+        <ul class="info-pages">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Need Help?</a></li>
+            <li><a href="#">Content Guide</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Advertising</a></li>
+            <li><a href="#">Jobs</a></li>
+        </ul>
+        <div class="company">© 2020 Tony TSOI Inc.</div>
+    </div>
+</footer>
+<div class="mask-wrapper">
+    <div class="auth-wrapper">
+        <div class="close-wrapper">
+            <span class="close-btn icon-close iconfont"> </span>
+        </div>
+        <div class="auth-inner-wrapper">
+            <div class="scroll-wrapper">
+                <div class="signin-group auth-group">
+                    <div class="top-group">
+                        <span class="title">Please Login</span>
+                        <a href="javascript: void(0);" class="switch">Register now</a>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="email"
+                                   placeholder="Please input your email address">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Please input your password ">
+
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="remember-label">
+                                <input type="checkbox" name="remember" value="1">
+                                Remember Me
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <input type="submit" class="submit-btn" value="Login">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signup-group auth-group">
+                    <div class="top-group">
+                        <span class="title">Please Register</span>
+                        <a href="javascript: void(0);" class="switch">Login now</a>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="email"
+                                   placeholder="Please input your email address">
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username"
+                                   placeholder="Please input your username">
+                        </div>
+
+                        <div class="input-group">
+                            <div class="short-input-group">
+                                <input type="text" class="form-control" name="img_captcha"
+                                       placeholder="graph validate code">
+
+                            </div>
+                            <div class="input-group-addon">
+                                <img src="{% url 'plpauth:img_captcha' %}" alt="" class="img-captcha">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password1"
+                                   placeholder="Please input your password">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password2"
+                                   placeholder="Please input your password again">
+                        </div>
+                        <div class="input-group">
+                            <div class="short-input-group">
+                                <input type="text" class="form-control" name="sms_captcha"
+                                       placeholder="SMS validate code">
+                            </div>
+                            <div class="input-group-addon">
+                                <span class="sms-captcha-btn">Send code</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="button" class="submit-btn" value="Register">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
